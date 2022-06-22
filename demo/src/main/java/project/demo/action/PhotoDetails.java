@@ -10,20 +10,20 @@ import java.util.List;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opensymphony.xwork2.ActionSupport;
 
-import project.demo.model.PhotoResponse;
+import project.demo.model.Photo;
 
 public class PhotoDetails extends ActionSupport{
-    private PhotoResponse photoResponse;
+    private Photo photoResponse;
     private String urlQuery;
     private String error;
     private String orientation = "original";
     private String [] orientationOptions = {"original", "portrait", "landscape"};
-    private int photoId = -1;
+    private int photoId;
     // private String imgSrc; this together with togglePhotoSource can be used if actually fetching resized values (something called DPR is modified as well as the width and height)
 
     public String execute() throws Exception {
+        System.out.println("PHOTO ID: " + photoId);
         if(photoId != -1) {
-            System.out.println("AAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
             try {
      
                 URL url = new URL("https://api.pexels.com/v1/photos/" + photoId);        
@@ -43,7 +43,7 @@ public class PhotoDetails extends ActionSupport{
                 String output;
                 while ((output = br.readLine()) != null) {
                     ObjectMapper mapper = new ObjectMapper();
-                    photoResponse = mapper.readValue(output, PhotoResponse.class);
+                    photoResponse = mapper.readValue(output, Photo.class);
                 }
                 conn.disconnect();
             } catch (Exception e) {
@@ -68,11 +68,11 @@ public class PhotoDetails extends ActionSupport{
     //     }
     // }
 
-    public PhotoResponse getPhotoResponse() {
+    public Photo getPhotoResponse() {
         return photoResponse;
     }
 
-    public void setPhotoResponse(PhotoResponse photoResponse) {
+    public void setPhotoResponse(Photo photoResponse) {
         this.photoResponse = photoResponse;
     }
 

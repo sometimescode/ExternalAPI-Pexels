@@ -31,29 +31,8 @@
   </head>
   <body>
     <!-- Start your project here-->
-    <div class="container">
-      <div class="d-flex justify-content-center align-items-center" style="height: 100vh">
-        <div class="text-center">
-            <img
-            class="mb-4 img-fluid"
-            src="https://images.pexels.com/lib/api/pexels-white.png"
-            />
-            <h5 class="mb-4"><a href="https://www.pexels.com">Photos provided by Pexels</a></h5>
-            <s:form action="Photos" theme="simple">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-8">
-                        <s:textfield name="searchQuery" label="Search" placeholder="nature" cssClass="form-control"/>
-                    </div>
-                    <div class="col-xs-12 col-sm-4">
-                        <s:submit value="SEARCH PHOTOS" cssClass="btn btn-primary btn-block"/>
-                    </div>
-                </div> 
-            </s:form>
-        </div>
-      </div>
-    </div>
-    <!-- End your project here-->
 
+    <!-- End your project here-->
     <script
     type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.js"

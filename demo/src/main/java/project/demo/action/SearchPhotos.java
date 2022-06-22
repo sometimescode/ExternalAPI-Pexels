@@ -16,10 +16,12 @@ public class SearchPhotos extends ActionSupport{
     private String urlQuery;
     private String error;
     private String searchQuery;
+    private String paginationQuery;
 
     public String execute() {
         return SUCCESS;
     }
+
 
     public String searchByUserQuery() throws MalformedURLException, Exception {
         if(searchQuery != null && !searchQuery.isBlank()){
@@ -57,7 +59,7 @@ public class SearchPhotos extends ActionSupport{
     }
 
     public String fetchPage() throws MalformedURLException, Exception {
-        searchAPI(new URL(searchQuery));
+        searchAPI(new URL(paginationQuery));
 
         return SUCCESS;
     }
@@ -92,6 +94,14 @@ public class SearchPhotos extends ActionSupport{
 
     public void setSearchQuery(String searchQuery) {
         this.searchQuery = searchQuery;
+    }
+
+    public String getPaginationQuery() {
+        return paginationQuery;
+    }
+
+    public void setPaginationQuery(String paginationQuery) {
+        this.paginationQuery = paginationQuery;
     }
 }
 

@@ -26,7 +26,7 @@
     <style>
         body {
           background-color: black
-        }  
+        }
     </style>
   </head>
   <body>
@@ -47,99 +47,127 @@
           </s:form>
       </div>
     </nav>
-    <div class="bg-light">
-      <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-          <s:if test="photosSearchResponse.prev_page != null">
-            <s:url var="prevPage" action="PhotosPagination" namespace="/">
-              <s:param name="searchQuery" value="%{photosSearchResponse.prev_page}"/>
-            </s:url>
-            <li class="page-item">
-              <a class="page-link" href="${prevPage}">Previous</a>
-            </li>
-          </s:if>
-          <s:else>
-            <li class="page-item disabled">
-              <a class="page-link" href="#">Previous</a>
-            </li>
-          </s:else>
-          <li class="page-item active"><a class="page-link" href="#"><s:property value="photosSearchResponse.page"/></a></li>
-          <s:if test="photosSearchResponse.next_page != null">
-            <s:url var="nextPage" action="PhotosPagination" namespace="/">
-              <s:param name="searchQuery" value="%{photosSearchResponse.next_page}"/>
-            </s:url>
-            <li class="page-item">
-              <a class="page-link" href="${nextPage}">Next</a>
-            </li>
-          </s:if>
-          <s:else>
-            <li class="page-item disabled">
-              <a class="page-link" href="#">Next</a>
-            </li>
-          </s:else>          
-        </ul>
-      </nav>
-    </div>    
-    <div class="container">
-      <!-- Gallery -->
-      <div class="grid row">
-        <s:iterator value="photosSearchResponse.photos">
-          <div class="grid-item col-lg-3 col-xs-12 col-sm-6 mb-4">
-            <div class="bg-image hover-overlay hover-shadow">
-              <s:url action="PhotoDetails" var="photoDetailsLink"> 
-                <s:param name="photoId" value="%{id}"/>
-              </s:url> 
-              <img 
-                src="${src.medium}" 
-                class="w-100 shadow-1-strong rounded img-fluid"
-                alt="${alt}"
-              />
-              <a href="${photoDetailsLink}">
-                <div class="d-flex justify-content-center align-items-center mask" style="background-color: rgba(57, 192, 237, 0.2)">
-                  <i class="fas fa-eye" style="font-size: 5em; color: white;"></i>
-                </div>
-              </a>
+
+    <s:if test="photosSearchResponse.total_results > 0">
+      <div>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            <s:if test="photosSearchResponse.prev_page != null">
+              <s:url var="prevPage" action="PhotosPagination" namespace="/">
+                <s:param name="paginationQuery" value="%{photosSearchResponse.prev_page}"/>
+              </s:url>
+              <li class="page-item">
+                <a class="page-link bg-light" href="${prevPage}" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+            </s:if>
+            <s:else>
+              <li class="page-item disabled">
+                <a class="page-link bg-light" href="#" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+            </s:else>
+            <li class="page-item active"><a class="page-link" href="#"><s:property value="photosSearchResponse.page"/></a></li>
+            <s:if test="photosSearchResponse.next_page != null">
+              <s:url var="nextPage" action="PhotosPagination" namespace="/">
+                <s:param name="paginationQuery" value="%{photosSearchResponse.next_page}"/>
+              </s:url>
+              <li class="page-item">
+                <a class="page-link bg-light" href="${nextPage}" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </s:if>
+            <s:else>
+              <li class="page-item disabled">
+                <a class="page-link bg-light" href="#" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </s:else>          
+          </ul>
+        </nav>
+      </div>   
+      
+      <div class="container">
+        <!-- Gallery -->
+        <div class="grid row">
+          <s:iterator value="photosSearchResponse.photos">
+            <div class="grid-item col-lg-3 col-xs-12 col-sm-6 mb-4">
+              <div class="bg-image hover-overlay hover-shadow">
+                <s:url action="PhotoDetails" var="photoDetailsLink"> 
+                  <s:param name="photoId" value="%{id}"/>
+                </s:url> 
+                <img 
+                  src="${src.medium}" 
+                  class="w-100 shadow-1-strong rounded img-fluid"
+                  alt="${alt}"
+                />
+                <a href="${photoDetailsLink}">
+                  <div class="d-flex justify-content-center align-items-center mask" style="background-color: rgba(57, 192, 237, 0.2)">
+                    <i class="fas fa-eye" style="font-size: 5em; color: white;"></i>
+                  </div>
+                </a>
+              </div>
             </div>
-          </div>
-        </s:iterator>
+          </s:iterator>
+        </div>
+        <!-- Gallery -->
       </div>
-      <!-- Gallery -->
-    </div>
 
-    <div class="bg-light">
-      <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-          <s:if test="photosSearchResponse.prev_page != null">
-            <s:url var="prevPage" action="PhotosPagination" namespace="/">
-              <s:param name="searchQuery" value="%{photosSearchResponse.prev_page}"/>
-            </s:url>
-            <li class="page-item">
-              <a class="page-link" href="${prevPage}">Previous</a>
-            </li>
-          </s:if>
-          <s:else>
-            <li class="page-item disabled">
-              <a class="page-link" href="#">Previous</a>
-            </li>
-          </s:else>
-          <li class="page-item active"><a class="page-link" href="#"><s:property value="photosSearchResponse.page"/></a></li>
-          <s:if test="photosSearchResponse.next_page != null">
-            <s:url var="nextPage" action="PhotosPagination" namespace="/">
-              <s:param name="searchQuery" value="%{photosSearchResponse.next_page}"/>
-            </s:url>
-            <li class="page-item">
-              <a class="page-link" href="${nextPage}">Next</a>
-            </li>
-          </s:if>
-          <s:else>
-            <li class="page-item disabled">
-              <a class="page-link" href="#">Next</a>
-            </li>
-          </s:else>          
-        </ul>
-      </nav>
-    </div>
-
+      <div>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            <s:if test="photosSearchResponse.prev_page != null">
+              <s:url var="prevPage" action="PhotosPagination" namespace="/">
+                <s:param name="paginationQuery" value="%{photosSearchResponse.prev_page}"/>
+              </s:url>
+              <li class="page-item">
+                <a class="page-link bg-light" href="${prevPage}" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+            </s:if>
+            <s:else>
+              <li class="page-item disabled">
+                <a class="page-link bg-light" href="#" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+            </s:else>
+            <li class="page-item active"><a class="page-link" href="#"><s:property value="photosSearchResponse.page"/></a></li>
+            <s:if test="photosSearchResponse.next_page != null">
+              <s:url var="nextPage" action="PhotosPagination" namespace="/">
+                <s:param name="paginationQuery" value="%{photosSearchResponse.next_page}"/>
+              </s:url>
+              <li class="page-item">
+                <a class="page-link bg-light" href="${nextPage}" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </s:if>
+            <s:else>
+              <li class="page-item disabled">
+                <a class="page-link bg-light" href="#" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </s:else>          
+          </ul>
+        </nav>
+      </div>
+    </s:if>
+    <s:else>
+      <div class="container">
+        <div class="d-flex justify-content-center align-items-center" style="height: 100vh">
+          <div class="text-center" style="color: white;">
+            No results found for query: <s:property value="searchQuery"/>
+          </div>
+        </div>
+      </div>
+    </s:else>
     <!-- End your project here-->
     <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
     <script

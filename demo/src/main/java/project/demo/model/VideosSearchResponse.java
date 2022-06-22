@@ -1,18 +1,27 @@
 package project.demo.model;
 
-public class PhotosSearchResponse {
-    private Photo photos[];
+import java.util.Arrays;
+
+public class VideosSearchResponse {
+    private Video videos[];
+    private String url;
     private int page;
     private int per_page;
     private int total_results;
     private String prev_page;
     private String next_page;
 
-    public Photo[] getPhotos() {
-        return photos;
+    public Video[] getVideos() {
+        return videos;
     }
-    public void setPhotos(Photo[] photos) {
-        this.photos = photos;
+    public void setVideos(Video[] videos) {
+        this.videos = videos;
+    }
+    public String getUrl() {
+        return url;
+    }
+    public void setUrl(String url) {
+        this.url = url;
     }
     public int getPage() {
         return page;
@@ -47,9 +56,8 @@ public class PhotosSearchResponse {
 
     @Override
     public String toString() {
-        return "PhotosSearchResponse [next_page=" + next_page + ", page=" + page + ", per_page=" + per_page
-                + ", photos=" + photos + ", prev_page=" + prev_page + ", total_results=" + total_results + "]";
+        return "VideosSearchResponse [next_page=" + next_page + ", page=" + page + ", per_page=" + per_page
+                + ", prev_page=" + prev_page + ", total_results=" + total_results + ", url=" + url + ", videos="
+                + Arrays.toString(videos) + "]";
     }
-
-    
 }

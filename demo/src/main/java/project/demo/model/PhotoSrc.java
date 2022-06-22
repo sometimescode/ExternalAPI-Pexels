@@ -1,6 +1,6 @@
 package project.demo.model;
 
-public class PhotoSource {
+public class PhotoSrc {
     private String original;
     private String large;
     private String large2x;

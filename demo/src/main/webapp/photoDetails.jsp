@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Under Construction</title>
+    <title>Photo Details</title>
     <!-- Font Awesome -->
     <link
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -32,23 +32,31 @@
   <body>
     <!-- Start your project here-->
     <div class="container">
-      <div class="d-flex justify-content-center align-items-center" style="height: 100vh">
-        <div class="text-center">
-          <img
-            class="mb-4 img-fluid"
-            src="https://images.pexels.com/lib/api/pexels-white.png"
-          />
-          <h5 class="mb-4"><a href="https://www.pexels.com">Photos provided by Pexels</a></h5>
-          <s:form action="Photos" theme="simple">
-            <div class="row">
-                <div class="col-xs-12 col-sm-8">
-                    <s:textfield name="searchQuery" label="Search" id="search" cssClass="form-control"/>
-                </div>
-                <div class="col-xs-12 col-sm-4">
-                    <s:submit value="SEARCH PHOTOS" cssClass="btn btn-primary btn-block"/>
-                </div>
-            </div> 
-        </s:form>
+      <div class="card text-center">
+        <div class="card-header">
+          <s:property value="photoResponse.alt"/>
+        </div>
+        <div class="card-body p-0 pe-2">
+          <div class="row d-flex align-items-center">
+            <div class="col-sm-12 col-md-10 pe-0">
+              <img src="${photoResponse.src.large}" class="img-fluid" alt="${photoResponse.alt}"/>
+            </div>
+            <div class="col-sm-12 col-md-2">
+              <a href="javascript:history.back()">Go Back</a>
+              <p>
+                <a href="${photoResponse.src.original}" target="_blank">Open Image in New Tab</a>
+              </p>
+              <p><span class="text-muted">id: </span><s:property value="photoResponse.id"/></p>
+              <p><span class="text-muted">width: </span><s:property value="photoResponse.width"/></p>
+              <p><span class="text-muted">height: </span><s:property value="photoResponse.height"/></p>
+              <p><a href="${photoResponse.url}"> Check it out on Pexels.</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          Photographed by <a href="${photoResponse.photographer_url}">
+            <s:property value="photoResponse.photographer"/>
+          </a> on Pexels.
         </div>
       </div>
     </div>

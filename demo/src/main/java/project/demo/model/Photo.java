@@ -1,6 +1,6 @@
 package project.demo.model;
 
-public class PhotoResponse {
+public class Photo {
     private int id;
     private int width;
     private int height;
@@ -9,7 +9,7 @@ public class PhotoResponse {
     private String photographer_url;
     private String photographer_id;
     private String avg_color;
-    private PhotoSource src;
+    private PhotoSrc src;
     private boolean liked;
     private String alt;
 
@@ -61,10 +61,10 @@ public class PhotoResponse {
     public void setAvg_color(String avg_color) {
         this.avg_color = avg_color;
     }
-    public PhotoSource getSrc() {
+    public PhotoSrc getSrc() {
         return src;
     }
-    public void setSrc(PhotoSource src) {
+    public void setSrc(PhotoSrc src) {
         this.src = src;
     }
     public boolean isLiked() {
